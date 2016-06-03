@@ -24,6 +24,7 @@ namespace Assignment1
         private int _speed;
         private int _health;
         private string _name;
+        private readonly object set;
 
         //PUBLIC PROPERTIES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /**
@@ -46,22 +47,23 @@ namespace Assignment1
                 this._name = value;
             }
         }
+        public int Strength
+        {
+            get
+            {
+                return this._strength;
+            }
+
+            set
+            {
+                Random abilities = new Random();
+                this._strength = abilities.Next(1, 100);
+            }
+        }
+
 
         //CONSTRUCTORS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        /**
-         * <summary>
-         * This is the default empty constructor for the Hero class
-         * </summary>
-         * 
-         * @constructor Hero
-         * 
-         */
-        public Hero()
-        {
-        //Initialize public properties
 
-            this.Name = "unknown name!";
-        }
 
         /**<summary>
          * This is the constructor that takes name as a parameter and passes it to the _name private instance variable 
@@ -75,14 +77,7 @@ namespace Assignment1
         {
             this.Name = name;
         }
-        /**<summary>
-         * This is the constructor that call the generateAbilities method
-         * </summary>
-         * 
-         * @constructor Hero
-         */
-
-        //+++++++++++++++++++++++++++++++++++++++++++
+         
 
         //PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -96,10 +91,10 @@ namespace Assignment1
          */
         private void _generateAbilities()
         {
-            Random rnd = new Random();
-            _strength = rnd.Next(1, 100); 
-            _speed = rnd.Next(1, 100);   
-            _health = rnd.Next(1,100); 
+            Random abilities = new Random();
+            _strength = abilities.Next(1, 100);
+            _speed = abilities.Next(1, 100);
+            _health = abilities.Next(1,100);
         }
 
         /**
@@ -112,8 +107,8 @@ namespace Assignment1
          */
         private bool _hitAttempt()
         {
-            Random gen = new Random();
-            int prob = gen.Next(100);
+            Random hit = new Random();
+            int prob = hit.Next(100);
             if (prob < 20)
                 return true;
             else
@@ -129,9 +124,45 @@ namespace Assignment1
          */
         private int _hitDamage()
         {
-            Random rand = new Random();
-            int damage = rand.Next(1, 6) * _strength;
+            Random hitdamage = new Random();
+            int damage = hitdamage.Next(1, 6) * _strength;
             return (damage);
+        }
+
+        //PUBLIC METHODS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /**
+         * <summary>
+         * This method calls the private hitAttempt method. If hitAttempt returns true, then it will call the private hitDamage method.
+         * </summary>
+         * 
+         * @method Fight
+         * @return {void}
+         */
+
+        public void Fight()
+        {
+            _hitAttempt();
+
+                
+        }
+        /**
+         * <summary>
+         * This method shows the name of the hero and randomly choose the abilities of the hero. 
+         * </summary>
+         * 
+         * @method Show
+         * @return {void}
+         */
+        public void Show()
+        {
+            Console.WriteLine("*********************");
+            Console.WriteLine("     "   + this.Name);
+            Console.WriteLine("*********************");
+            Console.WriteLine("");
+            _generateAbilities();
+            Console.WriteLine("Strength of the hero: " + _strength);
+            Console.WriteLine("Speed of the hero: " +_speed);
+            Console.WriteLine("Health of the hero: "+_health);
         }
     }
 }

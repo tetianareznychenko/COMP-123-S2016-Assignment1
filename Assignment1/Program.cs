@@ -14,10 +14,20 @@ namespace Assignment1
      */
     class Program
     {
-
+        /**
+         * The main method for driver class Program 
+         * 
+         * @method Main 
+         * @param {string[]} args
+         */
 
         static void Main(string[] args)
         {
+            //create a new istance of the Hero class
+            Hero blitzkrieg = new Hero("Blitzkrieg");
+            blitzkrieg.Fight();
+            blitzkrieg.Show();
+
         }
     }
 }
