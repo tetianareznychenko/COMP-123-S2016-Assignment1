@@ -84,5 +84,54 @@ namespace Assignment1
 
         //+++++++++++++++++++++++++++++++++++++++++++
 
+        //PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        /**
+         * <summary>
+         * This method randomly generates the ability numbers for the strength, speed and health properties.
+         * </summary>
+         * 
+         * @method _generateAbilities()
+         * @return {void}
+         */
+        private void _generateAbilities()
+        {
+            Random rnd = new Random();
+            _strength = rnd.Next(1, 100); 
+            _speed = rnd.Next(1, 100);   
+            _health = rnd.Next(1,100); 
+        }
+
+        /**
+         * <summary>
+         * This method randomly determine if the Hero hits (this should be only 20% of the time) otherwise it will return false
+         * </summary>
+         * 
+         * @method _ghitAttempt()
+         * @return {bool}
+         */
+        private bool _hitAttempt()
+        {
+            Random gen = new Random();
+            int prob = gen.Next(100);
+            if (prob < 20)
+                return true;
+            else
+                return false;
+        }
+        /**
+         * <summary>
+         * This method calculates the damage the Hero causes to the targeton a hit
+         * </summary>
+         * 
+         * @method _hitDamage()
+         * @return {int}
+         */
+        private int _hitDamage()
+        {
+            Random rand = new Random();
+            int damage = rand.Next(1, 6) * _strength;
+            return (damage);
+        }
     }
 }
