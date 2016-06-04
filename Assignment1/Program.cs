@@ -25,8 +25,10 @@ namespace Assignment1
         {
             //create a new istance of the Hero class
             Hero blitzkrieg = new Hero("Blitzkrieg");
-            blitzkrieg.Fight();
             blitzkrieg.Show();
+            Console.WriteLine("***************************");
+            Console.WriteLine("");
+            blitzkrieg.Fight();
 
         }
     }

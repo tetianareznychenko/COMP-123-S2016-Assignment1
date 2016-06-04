@@ -94,12 +94,12 @@ namespace Assignment1
             Random abilities = new Random();
             _strength = abilities.Next(1, 100);
             _speed = abilities.Next(1, 100);
-            _health = abilities.Next(1,100);
+            _health = abilities.Next(1, 100);
         }
 
         /**
          * <summary>
-         * This method randomly determine if the Hero hits (this should be only 20% of the time) otherwise it will return false
+         * This method randomly determine if the Hero hits (this should be only 20%  of the time) otherwise it will return false. 
          * </summary>
          * 
          * @method _ghitAttempt()
@@ -125,7 +125,8 @@ namespace Assignment1
         private int _hitDamage()
         {
             Random hitdamage = new Random();
-            int damage = hitdamage.Next(1, 6) * _strength;
+            int damage;
+            damage = _strength * hitdamage.Next(1,6);
             return (damage);
         }
 
@@ -141,9 +142,16 @@ namespace Assignment1
 
         public void Fight()
         {
-            _hitAttempt();
+            bool hit = _hitAttempt();
+            if (hit == true) 
+            {
+                Console.WriteLine(_hitDamage());
+            }
+            else
+            {
+                Console.WriteLine("You failed ^_^");
+            } 
 
-                
         }
         /**
          * <summary>
@@ -155,14 +163,14 @@ namespace Assignment1
          */
         public void Show()
         {
-            Console.WriteLine("*********************");
-            Console.WriteLine("     "   + this.Name);
-            Console.WriteLine("*********************");
+            Console.WriteLine("***************************");
+            Console.WriteLine("         "   + this.Name);
+            Console.WriteLine("***************************");
             Console.WriteLine("");
             _generateAbilities();
             Console.WriteLine("Strength of the hero: " + _strength);
             Console.WriteLine("Speed of the hero: " +_speed);
-            Console.WriteLine("Health of the hero: "+_health);
+            Console.WriteLine("Health of the hero: "+_health); 
         }
     }
 }
